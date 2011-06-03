@@ -1,29 +1,30 @@
 var gl, shaderProgram, vertexPositionAttribute, vertexNormalAttribute, pMatrix, mvMatrix;
 var mainObjVertexPosBuffID, mainObjVertexIndexBuffID;
 
-var xRot = 30;
-var yRot = -20;
-var zRot = 0;
-var xCamTrans = 0;
-var yCamTrans = 0;
-var zCamTrans = 0;
+
 var alphaCam  = 0;
 var lastTime = 0;
 
-var world = {
+var camPathPos = 0;
+
+var world = {  
   models: {},
-  objects: {}
+  objects: {},
+  camera: {
+    position: [0,10,-100],
+    rotation: [30,0,0]
+  }
 }
 
 function _loadShaders(callback){
   loadShaders([
-    ['data/vertex.shader','vertex'],
-    ['data/fragment.shader','fragment']
+    ['data/vertex_color.shader','vertex'],
+    ['data/fragment_color.shader','fragment']
   ], callback);
 }
 
 function _loadModels(callback){
-  loadModels([ 'plane', 'box' ], callback);
+  loadModels([ 'box', 'plane' ], callback);
 }
 
 function _loadScene(callback){
