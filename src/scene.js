@@ -6,6 +6,7 @@ function initScene(){
   
   createObject('plane_1', 'plane');
   createObject('box_1', 'box');
+  createObject('box_2', 'box');  
 }
 
 function createObject(name, model){
@@ -16,7 +17,14 @@ function createObject(name, model){
   }
 }
 
+function moveObject(name, pos){
+  world['objects'][name].position[0] += pos[0];
+  world['objects'][name].position[1] += pos[1];
+  world['objects'][name].position[2] += pos[2];
+}
+
 function calculateScene(diff){
+  moveObject('box_1', [0, -0.5, 0])
   //yRot += 1 * diff;
 }
 
@@ -51,6 +59,8 @@ function drawScene(){
     
     model = this['model'];
     
+    mvTranslate(this.position);
+    
     gl.bindBuffer(gl.ARRAY_BUFFER,model.normals);
     gl.vertexAttribPointer(vertexNormalAttribute,model.normals.itemSize, gl.FLOAT, false, 0,0);  
     gl.bindBuffer(gl.ARRAY_BUFFER,model.vertices);
@@ -58,6 +68,7 @@ function drawScene(){
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, model.indices);  
     
     setMatrixUniforms();  
+    
     gl.drawElements(gl.TRIANGLES, model.indices.numItems, gl.UNSIGNED_SHORT, 0);
   });
   
