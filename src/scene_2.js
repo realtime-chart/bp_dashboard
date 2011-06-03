@@ -5,6 +5,8 @@ scene_2 = {
 	camera_pos: 0,
 	cube_size: 3,
 	
+	time: 0,
+	
 	initScene: function(){
 		gl.clearColor((99/255.0), (107/255.0), (112/255.0), 1.0);
 		gl.clearDepth(1.0);
@@ -21,14 +23,20 @@ scene_2 = {
 	calculateScene: function(diff){		
 		world.camera.position = [0,0,-60];
 		world.camera.rotation = [30,this.camera_pos,0];
-		this.camera_pos += 0.002 * diff;
-		
+		this.time += diff;
+		if(this.time > 300){
+			this.addCubes();
+			this.time = 0;
+		}
+		this.camera_pos += 0.002 * diff;		
+	},
+	
+	addCubes: function(){
 		if(this.cubes_num==this.max_cubes){
 			//this.initCubes();
 		} else {
 			this.addCube();
-		}		
-		
+		}				
 	},
 	
 	addCube: function(){	
