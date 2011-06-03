@@ -31,16 +31,16 @@ function drawScene(){
   gl.uniform3f(gl.getUniformLocation(shaderProgram, "uDirectionalColor"), 0.8, 0.8, 0.8);
  
  
-  var obj = world['box'];
-  gl.bindBuffer(gl.ARRAY_BUFFER, obj.vertices);
-  gl.vertexAttribPointer(vertexNormalAttribute, obj.vertices.itemSize, gl.FLOAT, false, 0, 0);
-	
-  gl.bindBuffer(gl.ARRAY_BUFFER,obj.vertices);
-  gl.vertexAttribPointer(vertexPositionAttribute,obj.vertices.itemSize, gl.FLOAT, false, 0,0);
-
-  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mainObjVertexIndexBuffID);
+  /* action */
+  jQuery.each(world, function(i){
+    //var obj = world['box'];    
+    gl.bindBuffer(gl.ARRAY_BUFFER,this.normals);
+    gl.vertexAttribPointer(vertexNormalAttribute,this.normals.itemSize, gl.FLOAT, false, 0,0);  
+    gl.bindBuffer(gl.ARRAY_BUFFER,this.vertices);
+    gl.vertexAttribPointer(vertexPositionAttribute,this.vertices.itemSize, gl.FLOAT, false, 0,0);
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indices);  
+    setMatrixUniforms();  
+    gl.drawElements(gl.TRIANGLES, this.indices.numItems, gl.UNSIGNED_SHORT, 0);
+  });
   
-  setMatrixUniforms();
-  
-  gl.drawElements(gl.TRIANGLES, mainObjVertexIndexBuffID.numItems, gl.UNSIGNED_SHORT, 0);
 }

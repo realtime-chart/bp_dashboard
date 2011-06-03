@@ -23,7 +23,7 @@ function _loadShaders(callback){
 }
 
 function _loadModels(callback){
-  loadModels([ 'box' ], callback);
+  loadModels([ 'plane', 'box' ], callback);
 }
 
 function _loadScene(callback){
