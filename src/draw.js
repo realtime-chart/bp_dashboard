@@ -1,52 +1,3 @@
-function initScene(){
-  gl.clearColor((99/255.0), (107/255.0), (112/255.0), 1.0);
-  gl.clearDepth(1.0);
-  gl.enable(gl.DEPTH_TEST);
-  gl.depthFunc(gl.LEQUAL);
-  
-  createObject('plane_1', 'plane');
-  createObject('box_1', 'box');
-  createObject('box_2', 'box');  
-}
-
-function createObject(name, model){
-  world['objects'][name] = {
-    model: world['models'][model],
-    position: [0,0,0],
-    rotation: [0,0,0]
-  }
-}
-
-function moveObject(name, pos){
-  world['objects'][name].position[0] += pos[0];
-  world['objects'][name].position[1] += pos[1];
-  world['objects'][name].position[2] += pos[2];
-}
-
-function moveObjectAbs(name, pos){
-  world['objects'][name].position[0] = pos[0];
-  world['objects'][name].position[1] = pos[1];
-  world['objects'][name].position[2] = pos[2];
-}
-
-function getObject(name){
-  return world['objects'][name];
-}
-
-function calculateScene(diff){
-  moveObject('box_1', [0, -0.5, 0])
-  
-  moveObjectAbs('box_2', [0, -1.5, 1])
-  
-  if(getObject('box_1').position[1] <= -30){
-    moveObject('box_1', [0, 100, 0])
-  }
-  camPathPos += 1 * diff;
-  //world.camera.position[1] = camPathPos; 
-  world.camera.rotation[1] = camPathPos*0.2; 
-  
-}
-
 function drawScene(){
   var width = canvas.width = canvas.clientWidth;
   var height = canvas.height = canvas.clientHeight;  
@@ -91,6 +42,6 @@ function drawScene(){
     setMatrixUniforms();  
     
     gl.drawElements(gl.TRIANGLES, this['model'].indices.numItems, gl.UNSIGNED_SHORT, 0);
-  });
-  
+    
+  });  
 }
