@@ -4,8 +4,8 @@ var world = {
   models: {},  
   objects: {},  
   camera: {
-    position: [0,10,-100],
-    rotation: [30,0,0]
+    position: [0,10,50],
+    rotation: [40,0,0]
   }  
 }
 

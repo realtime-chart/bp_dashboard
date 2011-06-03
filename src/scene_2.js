@@ -1,7 +1,6 @@
 scene_2 = {
 
-	
-	cube_spacing: 2.5,
+	cube_spacing: 1.5,
 	camera_pos: 0,
 	cube_size: 3,
 	
@@ -33,7 +32,10 @@ scene_2 = {
 	
 	addCubes: function(){
 		if(this.cubes_num==this.max_cubes){
-			//this.initCubes();
+			for(n=0; n<this.cubes_num; n++){
+				destroyObject('box_'+n);
+			}
+			this.initCubes();
 		} else {
 			this.addCube();
 		}				
@@ -48,7 +50,7 @@ scene_2 = {
 		this.cubes_num += 1;
 	},
 	
-	initCubes: function(){
+	initCubes: function(){		
 		this.cube_width = 1;
 		this.cube_height = 1,	
 		this.cubes = [ [] ];

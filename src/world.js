@@ -22,4 +22,8 @@ function getObject(name){
   return world['objects'][name];
 }
 
+function destroyObject(name){
+  return world['objects'][name] = null;
+}
+
 
