@@ -16,13 +16,16 @@ var fZfar  =100.0;
 
 function _loadShaders(callback){
   loadShaders([
-    ['shaders/vertex.shader','vertex'],
-    ['shaders/fragment.shader','fragment']
+    ['data/vertex.shader','vertex'],
+    ['data/fragment.shader','fragment']
   ], callback);
 }
 
+function _loadModels(callback){
+  loadModels([ 'box' ], callback);
+}
+
 function _loadScene(callback){
-  initObjBuffers();
   initScene();
   callback();
 }
@@ -32,8 +35,10 @@ $(document).ready(function(){
   initGL();
   
   _loadShaders(function(){
-    _loadScene(function(){
-      doLoop();
+    _loadModels(function(){
+      _loadScene(function(){
+        doLoop();
+      });
     });
   });  
 
