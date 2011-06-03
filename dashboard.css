@@ -1,0 +1,3 @@
+body, html{ padding:0px; margin:0px; font-family:Helvetica, "Helvetica Neue", Arial, sans-serif; }
+#dashboard_loader{ position:absolute; z-index:1; width:100%; top:49%; text-align:center; }
+#dashboard_canvas{ position:absolute; z-index:23; border:none; width:100%; height:100%; }
