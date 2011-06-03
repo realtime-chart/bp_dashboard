@@ -1,5 +1,6 @@
 var vertexPositionAttribute, vertexNormalAttribute, vertexColorAttribute;
 var gl, shaderProgram, pMatrix, mvMatrix;
+var lastTime=0;
 
 function _loadShaders(callback){
   loadShaders(config.shaders, callback);
@@ -20,9 +21,11 @@ function initEngine(){
     _loadModels(function(){
       _loadScene(function(){
         window.setInterval(function(){
-			   	 scene.calculateScene(1);
-				   drawScene();
-			  }, 500);
+         	 var diff = new Date().getTime() - lastTime;
+        	 lastTime = new Date().getTime();
+			   	 scene.calculateScene(diff);
+				   drawScene();				   
+			  }, config.timer);
       });
     });
   }); 

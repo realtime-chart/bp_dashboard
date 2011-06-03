@@ -19,7 +19,7 @@ scene_1 = {
 		if(getObject('box_1').position[1] <= -30){
 		  moveObject('box_1', [0, 100, 0]);
 		}
-		this.camPathPos += 1 * diff;
+		this.camPathPos += 0.05 * diff;
 		world.camera.rotation[1] = this.camPathPos*0.2;   
 	}
 	
