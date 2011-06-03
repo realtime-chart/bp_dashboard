@@ -10,10 +10,10 @@ var zCamTrans = 0;
 var alphaCam  = 0;
 var lastTime = 0;
 
-var fZnear = 0.1;
-var fZfar  = 100.0;
-
-var world = {};
+var world = {
+  models: {},
+  objects: {}
+}
 
 function _loadShaders(callback){
   loadShaders([

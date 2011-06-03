@@ -10,6 +10,7 @@ function loadShaders(shader_files, callback){
 
 function loadModels(model_names, callback){
   models = new Array;
+  
   $(model_names).each(function(i,model_name){    
     $.get('data/'+model_name+'.model', function(data){
       try{ var model = JSON.parse(data); } catch(e) { alert(e); }

@@ -24,6 +24,6 @@ function initModels(models, model_names){
     obj.indices.itemSize = 1;
     obj.indices.numItems = this[2].length;
     
-    world[name] = obj;
+    world['models'][name] = obj;
   });
 }
