@@ -21,34 +21,13 @@ scene_2 = {
 
 		/*createObject('box_2', 'box');
 		moveObjectAbs('box_2', [1.5, 0, 0]);	*/		
-		
-		this.addCube();
-		this.addCube();
-		this.addCube();
-		this.addCube();
-		this.addCube();
-		this.addCube();
-		this.addCube();
-		this.addCube();
-		this.addCube();
-		this.cubes.push(new Array)
-		this.cube_lvl += 1;
-		this.cube_widths.push(1);
-		this.addCube();
-		this.addCube();
-		this.addCube();
-		this.addCube();
-		this.addCube();
-		this.addCube();
-		this.addCube();
-		this.addCube();
-		this.addCube();
 	},
 
 	calculateScene: function(diff){		
 		world.camera.position = [0,0,-80];
 		world.camera.rotation = [30,this.camera_pos,0];
 		this.camera_pos += 0.002 * diff;
+		this.addCube();
 	},
 	
 	addCube: function(){	
@@ -64,6 +43,13 @@ scene_2 = {
 		if(this.cubes[this.cube_lvl].length>=(this.cube_widths[this.cube_lvl]*this.cube_widths[this.cube_lvl])){
 			this.cube_widths[this.cube_lvl] += 1;
 		}		
+		
+		if(this.cube_widths[this.cube_lvl]>this.cube_width+1){
+			this.cubes.push(new Array)
+			this.cube_lvl += 1;
+			this.cube_widths.push(1);
+		}
+
 		return this.nextCubeLvlPos(this.cube_lvl, this.cube_widths[this.cube_lvl], this.cubes[this.cube_lvl]);
 	},
 	
@@ -76,22 +62,6 @@ scene_2 = {
 			return [width-1-((row_c-width)+1), lvl, width-1];
 		} else {
 			return [width-1, lvl, width-(width-row_c)];
-		}			
-	},
-	
-	nextCubePosOld: function(){
-		var n = this.cubes.length;
-		var total = (this.cube_width*this.cube_width);
-		if(n>=total){
-			this.cube_width += 1;
-		}
-		
-		var total_xz = (this.cube_width*this.cube_width);
-		var row_c = n - ((this.cube_width-1)*(this.cube_width-1));
-		if(row_c>this.cube_width-1){			
-			return [this.cube_width-1-((row_c-this.cube_width)+1), 0, this.cube_width-1];
-		} else {
-			return [this.cube_width-1, 0, this.cube_width-(this.cube_width-row_c)];
 		}			
 	}
 	
