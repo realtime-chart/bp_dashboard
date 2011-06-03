@@ -13,7 +13,7 @@ var world = {
 var config = {
 	models: [ 'box', 'plane' ],
 	scenes: [ scene_1 ],   
-  timer: 500,		 
+  timer: 50,		 
 	shaders: [
     ['data/vertex_color.shader','vertex'],
     ['data/fragment_color.shader','fragment']
