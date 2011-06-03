@@ -1,29 +1,30 @@
 function initModels(models, model_names){
   jQuery.each(models, function(i){
-    name = model_names[i];
-    
+    var name = this[1];
+    var model = this[0];    
+       
     var obj = {
-      'data': this,
+      'data': model,
       'vertices': gl.createBuffer(),
       'normals': gl.createBuffer(),
       'colors': gl.createBuffer(),
       'indices': gl.createBuffer()
     }
-
+    
     gl.bindBuffer(gl.ARRAY_BUFFER, obj.vertices);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this[0]), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(model[0]), gl.STATIC_DRAW);
     obj.vertices.itemSize = 3;
-    obj.vertices.numItems = this[0].length/3;
+    obj.vertices.numItems = model[0].length/3;
 
     gl.bindBuffer(gl.ARRAY_BUFFER, obj.normals);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this[1]), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(model[1]), gl.STATIC_DRAW);
     obj.normals.itemSize = 3;
-    obj.normals.numItems = this[1].length/3;
+    obj.normals.numItems = model[1].length/3;
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, obj.indices);
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this[2]), gl.STATIC_DRAW);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(model[2]), gl.STATIC_DRAW);
     obj.indices.itemSize = 1;
-    obj.indices.numItems = this[2].length;
+    obj.indices.numItems = model[2].length;
     
     var colors = new Array;
     var color = obj['data'][3];

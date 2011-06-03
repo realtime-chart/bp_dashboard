@@ -15,9 +15,9 @@ function loadModels(model_names, callback){
     $.get('data/'+model_name+'.model', function(data){
       try{ var model = JSON.parse(data); } catch(e) { alert(e); }
       if(!model){ alert("can't load model: "+model_name); } else {
-        models.push(model);
+        models.push([model,model_name]);
       }
-      if(models.length == model_names.length){ initModels(models, model_names); callback(); }
+      if(models.length == model_names.length){ initModels(models); callback(); }
     });
   });
 }

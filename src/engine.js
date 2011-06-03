@@ -1,3 +1,6 @@
+var vertexPositionAttribute, vertexNormalAttribute, vertexColorAttribute;
+var gl, shaderProgram, pMatrix, mvMatrix;
+
 function _loadShaders(callback){
   loadShaders(config.shaders, callback);
 }
@@ -7,7 +10,7 @@ function _loadModels(callback){
 }
 
 function _loadScene(callback){
-	scene = config.scenes[0];
+	//scene = config.scenes[0];
   scene.initScene();
   callback();
 }

@@ -1,7 +1,4 @@
-var vertexPositionAttribute, vertexNormalAttribute, vertexColorAttribute;
-var gl, shaderProgram, pMatrix, mvMatrix;
-var scene;
-
+var scene = scene_1;
 
 var world = {  
   models: {},  
