@@ -23,10 +23,21 @@ var config = {
 }
 
 
+/* test */
+var cube_queue = new Array;
+window.setInterval(function(){
+	if(Math.random()>0.5){
+		cube_queue.push(true);	
+	} else {
+		cube_queue.push(false);
+	}	
+}, 50);
+
 
 $(document).ready(function(){  
   initGL();
   initEngine();
 });
+
 
 

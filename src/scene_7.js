@@ -50,8 +50,12 @@ scene_7 = {
 
 		}
 		
-		if(this.time > 30){
-			this.addCubes();
+		if(this.time > 20){
+			if(cube_queue.length>0){
+				var next_cube = cube_queue[0];
+				cube_queue.splice(0,1);
+				this.addCubes(next_cube);
+			}
 			this.time = 0;
 		}
 		
@@ -62,18 +66,14 @@ scene_7 = {
 		}
 	},
 	
-	addCubes: function(){
+	addCubes: function(white){
 		if(this.cubes_num==this.max_cubes){
 			this.camera_zoom = 38;
 			this.big_cubes.push(this.cubes);
 			this.x_offset += this.cube_size*this.cube_spacing*this.bigcube_spacing;
 			this.initCubes();
 		} else {
-			if(Math.random()>0.5){
-				this.addCube(true);	
-			} else {
-				this.addCube(false);
-			}			
+			this.addCube(white);	
 		}				
 	},
 	
