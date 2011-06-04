@@ -6,6 +6,7 @@ scene_7 = {
 	cube_size: 3,
 	cubes_total: 0,
 	camera_pos: 0,
+	camera_zoom: 45,
 		
 	x_offset: 0,	
 	time: 0,
@@ -24,8 +25,20 @@ scene_7 = {
 	calculateScene: function(diff){		
 		world.camera.position = [0,0,0];
 		world.camera.rotation = [20,-10,0];
-		world.camera.dolly = [0,-12,-30]
+		world.camera.dolly = [0,-12,-30];
+		
+		if((world.camera.aperture>this.camera_zoom) && (this.camera_zoom < 45)){
+			world.camera.aperture -= (0.3 * diff);
+			if(world.camera.aperture<this.camera_zoom){
+				world.camera.aperture = this.camera_zoom;
+			}
+		} else if(world.camera.aperture<45){			
+			this.camera_zoom = 46;
+			world.camera.aperture += (0.05 * diff) * (10/(this.camera_zoom-world.camera.aperture));
+		}		
+		
 		this.time += diff;
+		
 		if(this.big_cubes.length > this.bigcubes_prune){
 			var del_cubes = this.big_cubes[0];
 			this.big_cubes.splice(0,1);
@@ -36,26 +49,28 @@ scene_7 = {
 			}
 
 		}
+		
 		if(this.time > 30){
 			this.addCubes();
 			this.time = 0;
 		}
+		
 		world.camera.dolly[0] =0 + this.camera_pos;
+		
 		if(this.camera_pos > -this.x_offset){
 			this.camera_pos -= (0.002 * diff) * ((this.x_offset+this.camera_pos)/(this.cube_size + this.bigcube_spacing));
 		}
-		//console.log(this.camera_pos + " - " + this.x_offset);
 	},
 	
 	addCubes: function(){
 		if(this.cubes_num==this.max_cubes){
+			this.camera_zoom = 38;
 			this.big_cubes.push(this.cubes);
 			this.x_offset += this.cube_size*this.cube_spacing*this.bigcube_spacing;
 			this.initCubes();
 		} else {
 			if(Math.random()>0.5){
 				this.addCube(true);	
-				console.log(true);
 			} else {
 				this.addCube(false);
 			}			

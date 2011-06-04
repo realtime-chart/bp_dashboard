@@ -19,7 +19,7 @@ function drawScene(){
      
   jQuery.each(world['objects'], function(i){
     if(world['objects'][i]){
-			pMatrix = makePerspective(45, width/height, 0.1, 1000.0);
+			pMatrix = makePerspective(world.camera.aperture, width/height, 0.1, 100.0);
 			mvMatrix = Matrix.I(4);  
 			mvMatrix = mvMatrix.x(create3DTranslationMatrix(Vector.create(world.camera.position)).ensure4x4());  
 			mvMatrix = mvMatrix.x(Matrix.Rotation(world.camera.rotation[0]* Math.PI / 180.0, Vector.create([1,0,0])).ensure4x4());

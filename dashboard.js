@@ -6,7 +6,8 @@ var world = {
   camera: {
     position: [0,10,50],
     rotation: [40,0,0],
-    dolly: [0,0,0]
+    dolly: [0,0,0],
+    aperture: 45
   }  
 }
 
