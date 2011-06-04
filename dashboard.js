@@ -1,4 +1,4 @@
-var scene = scene_4;
+var scene = scene_5;
 
 var world = {  
   models: {},  
