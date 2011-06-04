@@ -24,7 +24,7 @@ scene_7 = {
 	calculateScene: function(diff){		
 		world.camera.position = [0,0,0];
 		world.camera.rotation = [20,-10,0];
-		world.camera.dolly = [0,-11,-30]
+		world.camera.dolly = [0,-12,-30]
 		this.time += diff;
 		if(this.big_cubes.length > this.bigcubes_prune){
 			var del_cubes = this.big_cubes[0];
@@ -53,14 +53,19 @@ scene_7 = {
 			this.x_offset += this.cube_size*this.cube_spacing*this.bigcube_spacing;
 			this.initCubes();
 		} else {
-			this.addCube();
+			if(Math.random()>0.5){
+				this.addCube(true);	
+				console.log(true);
+			} else {
+				this.addCube(false);
+			}			
 		}				
 	},
 	
-	addCube: function(){	
+	addCube: function(white){	
 		var pos = this.nextCubePos();				
 		var t = 'box_'+this.cubes_total;
-		createObject(t, 'box');
+		if(white==true){ createObject(t, 'box_white'); } else { createObject(t, 'box'); }		
 		moveObjectAbs(t, [(pos[0]*this.cube_spacing)+this.x_offset, (pos[1]*this.cube_spacing), (pos[2]*this.cube_spacing)]);		
 		this.cubes[this.cube_lvl].push(t);
 		this.cubes_num += 1;

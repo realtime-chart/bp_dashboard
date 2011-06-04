@@ -12,7 +12,7 @@ var world = {
 
 
 var config = {
-	models: [ 'box', 'plane' ],
+	models: [ 'box', 'box_white', 'plane' ],
 	scenes: [ scene_1 ],   
   timer: 30,		 
 	shaders: [
