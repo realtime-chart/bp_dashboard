@@ -1,11 +1,12 @@
-var scene = scene_3;
+var scene = scene_4;
 
 var world = {  
   models: {},  
   objects: {},  
   camera: {
     position: [0,10,50],
-    rotation: [40,0,0]
+    rotation: [40,0,0],
+    dolly: [0,0,0]
   }  
 }
 

@@ -15,18 +15,22 @@ function drawScene(){
   var flatLD = [vAdjustedLDir.e(1),vAdjustedLDir.e(2),vAdjustedLDir.e(3)];*/
   gl.uniform3f(gl.getUniformLocation(shaderProgram, "uLightingDirection"), 0, -2, 0);
   gl.uniform3f(gl.getUniformLocation(shaderProgram, "uDirectionalColor"), 0.8, 0.8, 0.8);
- 
+
+     
   jQuery.each(world['objects'], function(i){
     
-    /*camera*/
-    pMatrix = makePerspective(45, width/height, 0.1, 1000.0);
-    mvMatrix = Matrix.I(4);  
-    mvMatrix = mvMatrix.x(create3DTranslationMatrix(Vector.create(world.camera.position)).ensure4x4());  
-    mvMatrix = mvMatrix.x(Matrix.Rotation(world.camera.rotation[0]* Math.PI / 180.0, Vector.create([1,0,0])).ensure4x4());
-    mvMatrix = mvMatrix.x(Matrix.Rotation(world.camera.rotation[1]* Math.PI / 180.0, Vector.create([0,1,0])).ensure4x4());
-    mvMatrix = mvMatrix.x(Matrix.Rotation(world.camera.rotation[2]* Math.PI / 180.0, Vector.create([0,0,1])).ensure4x4());
+
+		pMatrix = makePerspective(45, width/height, 0.1, 1000.0);
+		mvMatrix = Matrix.I(4);  
+		mvMatrix = mvMatrix.x(create3DTranslationMatrix(Vector.create(world.camera.position)).ensure4x4());  
+		mvMatrix = mvMatrix.x(Matrix.Rotation(world.camera.rotation[0]* Math.PI / 180.0, Vector.create([1,0,0])).ensure4x4());
+		mvMatrix = mvMatrix.x(Matrix.Rotation(world.camera.rotation[1]* Math.PI / 180.0, Vector.create([0,1,0])).ensure4x4());
+		mvMatrix = mvMatrix.x(Matrix.Rotation(world.camera.rotation[2]* Math.PI / 180.0, Vector.create([0,0,1])).ensure4x4());  
+	
+		mvTranslate(world.camera.dolly);
+    mvTranslate(this.position);
         
-    mvTranslate(this.position);    
+        
     
     gl.bindBuffer(gl.ARRAY_BUFFER, this.model.colors);
     gl.vertexAttribPointer(vertexColorAttribute,4, gl.FLOAT, false, 0, 0);

@@ -20,6 +20,7 @@ function initEngine(){
   _loadShaders(function(){
     _loadModels(function(){
       _loadScene(function(){
+      	lastTime = new Date().getTime();
         window.setInterval(function(){
          	 var diff = new Date().getTime() - lastTime;
         	 lastTime = new Date().getTime();
