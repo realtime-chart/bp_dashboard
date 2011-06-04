@@ -1,4 +1,4 @@
-var scene = scene_2;
+var scene = scene_3;
 
 var world = {  
   models: {},  
@@ -13,7 +13,7 @@ var world = {
 var config = {
 	models: [ 'box', 'plane' ],
 	scenes: [ scene_1 ],   
-  timer: 20,		 
+  timer: 400,		 
 	shaders: [
     ['data/vertex_color.shader','vertex'],
     ['data/fragment_color.shader','fragment']
