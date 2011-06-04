@@ -16,6 +16,7 @@ var config = {
 	models: [ 'box', 'box_white', 'plane' ],
 	scenes: [ scene_1 ],   
   timer: 20,		 
+  cents_per_block: 100,
 	shaders: [
     ['data/vertex_light.shader','vertex'],
     ['data/fragment_light.shader','fragment']
@@ -23,21 +24,23 @@ var config = {
 }
 
 
-/* test */
-var cube_queue = new Array;
-window.setInterval(function(){
-	if(Math.random()>0.5){
-		cube_queue.push(true);	
-	} else {
-		cube_queue.push(false);
-	}	
-}, 50);
-
-
 $(document).ready(function(){  
   initGL();
   initEngine();
 });
+
+
+/* test */
+window.setInterval(function(){
+	var amount = Math.random()*2000;
+	if(Math.random()>0.5){
+		addDonation(amount, true);
+	} else {
+		addDonation(amount, false);
+	}	
+}, 1000);
+
+
 
 
 

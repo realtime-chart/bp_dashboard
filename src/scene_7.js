@@ -50,7 +50,7 @@ scene_7 = {
 
 		}
 		
-		if(this.time > 20){
+		if(this.time > 50){
 			if(cube_queue.length>0){
 				var next_cube = cube_queue[0];
 				cube_queue.splice(0,1);
