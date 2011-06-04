@@ -18,34 +18,33 @@ function drawScene(){
 
      
   jQuery.each(world['objects'], function(i){
-    
-
-		pMatrix = makePerspective(45, width/height, 0.1, 1000.0);
-		mvMatrix = Matrix.I(4);  
-		mvMatrix = mvMatrix.x(create3DTranslationMatrix(Vector.create(world.camera.position)).ensure4x4());  
-		mvMatrix = mvMatrix.x(Matrix.Rotation(world.camera.rotation[0]* Math.PI / 180.0, Vector.create([1,0,0])).ensure4x4());
-		mvMatrix = mvMatrix.x(Matrix.Rotation(world.camera.rotation[1]* Math.PI / 180.0, Vector.create([0,1,0])).ensure4x4());
-		mvMatrix = mvMatrix.x(Matrix.Rotation(world.camera.rotation[2]* Math.PI / 180.0, Vector.create([0,0,1])).ensure4x4());  
+    if(world['objects'][i]){
+			pMatrix = makePerspective(45, width/height, 0.1, 1000.0);
+			mvMatrix = Matrix.I(4);  
+			mvMatrix = mvMatrix.x(create3DTranslationMatrix(Vector.create(world.camera.position)).ensure4x4());  
+			mvMatrix = mvMatrix.x(Matrix.Rotation(world.camera.rotation[0]* Math.PI / 180.0, Vector.create([1,0,0])).ensure4x4());
+			mvMatrix = mvMatrix.x(Matrix.Rotation(world.camera.rotation[1]* Math.PI / 180.0, Vector.create([0,1,0])).ensure4x4());
+			mvMatrix = mvMatrix.x(Matrix.Rotation(world.camera.rotation[2]* Math.PI / 180.0, Vector.create([0,0,1])).ensure4x4());  
 	
-		mvTranslate(world.camera.dolly);
-    mvTranslate(this.position);
-        
-        
-    
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.model.colors);
-    gl.vertexAttribPointer(vertexColorAttribute,4, gl.FLOAT, false, 0, 0);
-    
-    gl.bindBuffer(gl.ARRAY_BUFFER,this.model.normals);
-    gl.vertexAttribPointer(vertexNormalAttribute,this.model.normals.itemSize, gl.FLOAT, false, 0,0);  
-    
-    gl.bindBuffer(gl.ARRAY_BUFFER,this.model.vertices);
-    gl.vertexAttribPointer(vertexPositionAttribute,this.model.vertices.itemSize, gl.FLOAT, false, 0,0);
+			mvTranslate(world.camera.dolly);
+		  mvTranslate(this.position);
+		      
+		      
+		  
+		  gl.bindBuffer(gl.ARRAY_BUFFER, this.model.colors);
+		  gl.vertexAttribPointer(vertexColorAttribute,4, gl.FLOAT, false, 0, 0);
+		  
+		  gl.bindBuffer(gl.ARRAY_BUFFER,this.model.normals);
+		  gl.vertexAttribPointer(vertexNormalAttribute,this.model.normals.itemSize, gl.FLOAT, false, 0,0);  
+		  
+		  gl.bindBuffer(gl.ARRAY_BUFFER,this.model.vertices);
+		  gl.vertexAttribPointer(vertexPositionAttribute,this.model.vertices.itemSize, gl.FLOAT, false, 0,0);
 
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this['model'].indices);  
-  
-    setMatrixUniforms();  
-    
-    gl.drawElements(gl.TRIANGLES, this['model'].indices.numItems, gl.UNSIGNED_SHORT, 0);
-    
+		  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this['model'].indices);  
+		
+		  setMatrixUniforms();  
+		  
+		  gl.drawElements(gl.TRIANGLES, this['model'].indices.numItems, gl.UNSIGNED_SHORT, 0);
+    }
   });  
 }

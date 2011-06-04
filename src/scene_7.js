@@ -2,10 +2,11 @@ scene_7 = {
 
 	cube_spacing: 1.5,
 	bigcube_spacing: 2,
+	bigcubes_prune: 5,
 	cube_size: 3,
 	cubes_total: 0,
 	camera_pos: 0,
-	
+		
 	x_offset: 0,	
 	time: 0,
 	
@@ -16,10 +17,8 @@ scene_7 = {
 		gl.depthFunc(gl.LEQUAL);
 		
 		this.initCubes();
+		this.big_cubes = [];
 		this.max_cubes = (this.cube_size*this.cube_size*this.cube_size);
-
-		/*createObject('plane_1', 'plane');
-		moveObjectAbs('plane_1', [10, 35, 0]);	*/
 	},
 
 	calculateScene: function(diff){		
@@ -27,12 +26,19 @@ scene_7 = {
 		world.camera.rotation = [20,-10,0];
 		world.camera.dolly = [0,-11,-30]
 		this.time += diff;
-		if(this.time > 300){
+		if(this.big_cubes.length > this.bigcubes_prune){
+			var del_cubes = this.big_cubes[0];
+			this.big_cubes.splice(0,1);
+			for(l=0; l<del_cubes.length; l++){
+				for(n=0; n<del_cubes[l].length; n++){
+					destroyObject(del_cubes[l][n]);
+				}				
+			}
+
+		}
+		if(this.time > 30){
 			this.addCubes();
 			this.time = 0;
-		}
-		for(n=0; n<this.cubes_total; n++){
-			moveObject('box_'+n, [0, 0, 0]);
 		}
 		world.camera.dolly[0] =0 + this.camera_pos;
 		if(this.camera_pos > -this.x_offset){
@@ -43,6 +49,7 @@ scene_7 = {
 	
 	addCubes: function(){
 		if(this.cubes_num==this.max_cubes){
+			this.big_cubes.push(this.cubes);
 			this.x_offset += this.cube_size*this.cube_spacing*this.bigcube_spacing;
 			this.initCubes();
 		} else {

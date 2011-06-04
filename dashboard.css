@@ -2,7 +2,7 @@ body, html{ padding:0px; margin:0px; font-family:Helvetica, "Helvetica Neue", Ar
 #dashboard_loader{ position:absolute; z-index:1; width:100%; top:49%; text-align:center; }
 #dashboard_canvas{ position:absolute; z-index:23; border:none; width:100%; height:100%; }
 
-#stats{ position:absolute; z-index:42; border:none; width:100%; height:100%; }
-.stat{ margin-left:30px; margin-top:50px; color:#fff; }
+#stats{ position:absolute; z-index:42; border:none; width:100%; height:100px; overflow:hidden; }
+.stat{ margin-left:30px; margin-top:30px; color:#fff; float:left; margin-right:70px; }
 .stat span{ font-size:8pt; } 
 .stat h1{ font-size:28pt; margin:0px; margin-top:10px; }
