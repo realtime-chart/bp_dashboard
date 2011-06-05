@@ -16,12 +16,18 @@ var config = {
 	models: [ 'box', 'box_white', 'plane' ],
   timer: 20,		 
   cents_per_block: 100,
+  cube_size: 5,
 	shaders: [
     ['data/vertex_light.shader','vertex'],
     ['data/fragment_light.shader','fragment']
   ]
 }
 
+
+try{
+	var cube_size = parseInt(document.location.hash.split('#')[1]);
+	if(cube_size>1){ config.cube_size = cube_size; }	
+} catch(e){ }
 
 $(document).ready(function(){  
   initGL();
@@ -32,12 +38,12 @@ $(document).ready(function(){
 /* test */
 window.setInterval(function(){
 	var amount = Math.random()*2000;
-	if(Math.random()>0.5){
+	if(Math.random()>0.7){
 		addDonation(amount, true);
 	} else {
 		addDonation(amount, false);
 	}	
-}, 1000);
+}, 2000);
 
 
 

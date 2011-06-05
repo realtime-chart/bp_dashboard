@@ -3,7 +3,7 @@ scene_7 = {
 	cube_spacing: 1.5,
 	bigcube_spacing: 2,
 	bigcubes_prune: 5,
-	cube_size: 3,
+	cube_size: 0,
 	cubes_total: 0,
 	camera_pos: 0,
 	camera_zoom: 50,
@@ -18,6 +18,7 @@ scene_7 = {
 		gl.enable(gl.DEPTH_TEST);
 		gl.depthFunc(gl.LEQUAL);
 		
+		this.cube_size = config.cube_size;
 		this.initCubes();
 		this.big_cubes = [];
 		this.max_cubes = (this.cube_size*this.cube_size*this.cube_size);
