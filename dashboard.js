@@ -1,3 +1,8 @@
+/*
+	todo: specular glow shader?
+	todo: block 'fade-in' animation
+*/
+
 var scene = scene_7;
 
 var world = {  
