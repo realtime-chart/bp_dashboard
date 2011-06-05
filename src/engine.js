@@ -24,7 +24,8 @@ function initEngine(){
         window.setInterval(function(){
          	 var diff = new Date().getTime() - lastTime;
         	 lastTime = new Date().getTime();
-			   	 scene.calculateScene(diff);
+        	 updateStatsDisplay();
+			   	 scene.calculateScene(diff);			   	 
 				   drawScene();				   
 			  }, config.timer);
       });
