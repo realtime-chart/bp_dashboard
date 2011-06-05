@@ -5,16 +5,9 @@ function drawScene(){
   gl.viewport(0, 0, width, height);
   
   /*light*/
-  /*gl.uniform3f(shaderProgram.ambientColorUniform, 1.0, 0.0, 0.0);
-  gl.uniform3f(shaderProgram.pointLightingLocationUniform, 1.0, 0.0, 0.0);
-  gl.uniform3f(shaderProgram.pointLightingColorUniform, 1.0, 0.0, 0.0);*/
-    
-  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uAmbientColor"), 0.4, 0.4,0.4);
-  /*var vLightDirection = Vector.create([2.0,-2.0,2.0]);
-  var vAdjustedLDir   = vLightDirection.toUnitVector().x(-1);
-  var flatLD = [vAdjustedLDir.e(1),vAdjustedLDir.e(2),vAdjustedLDir.e(3)];*/
-  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uLightingDirection"), 0, -2, 0);
-  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uDirectionalColor"), 0.8, 0.8, 0.8);
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uAmbientColor"), 0.6, 0.6,0.6);
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uLightingDirection"), 2, -2, 0);
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uDirectionalColor"), 1.0, 1.0, 1.0);
 
      
   jQuery.each(world['objects'], function(i){
