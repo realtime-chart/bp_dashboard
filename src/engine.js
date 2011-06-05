@@ -11,7 +11,6 @@ function _loadModels(callback){
 }
 
 function _loadScene(callback){
-	//scene = config.scenes[0];
   scene.initScene();
   callback();
 }

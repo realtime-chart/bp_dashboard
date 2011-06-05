@@ -16,7 +16,7 @@ var config = {
 	models: [ 'box', 'box_white', 'plane' ],
   timer: 20,		 
   cents_per_block: 100,
-  cube_size: 5,
+  cube_size: 3,
 	shaders: [
     ['data/vertex_light.shader','vertex'],
     ['data/fragment_light.shader','fragment']
