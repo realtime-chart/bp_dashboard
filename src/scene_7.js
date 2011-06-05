@@ -6,7 +6,8 @@ scene_7 = {
 	cube_size: 3,
 	cubes_total: 0,
 	camera_pos: 0,
-	camera_zoom: 45,
+	camera_zoom: 50,
+	camera_zoom_t: 50,
 		
 	x_offset: 0,	
 	time: 0,
@@ -27,15 +28,20 @@ scene_7 = {
 		world.camera.rotation = [20,-10,0];
 		world.camera.dolly = [0,-12,-30];
 		
-		if((world.camera.aperture>this.camera_zoom) && (this.camera_zoom < 45)){
-			world.camera.aperture -= (0.3 * diff);
-			if(world.camera.aperture<this.camera_zoom){
-				world.camera.aperture = this.camera_zoom;
+		var zoomout_f=0.1;
+		if((world.camera.aperture)>this.camera_zoom+(zoomout_f * diff)){
+			world.camera.aperture -= (zoomout_f * diff);
+			if(world.camera.aperture<=this.camera_zoom+(zoomout_f * diff)){
+				this.camera_zoom = this.camera_zoom_t;
 			}
-		} else if(world.camera.aperture<45){			
-			this.camera_zoom = 46;
-			world.camera.aperture += (0.05 * diff) * (10/(this.camera_zoom-world.camera.aperture));
-		}		
+		} 
+		var zoomin_f=0.08;
+		if((world.camera.aperture)<this.camera_zoom){
+			world.camera.aperture += (zoomin_f * diff);
+			if(world.camera.aperture>=this.camera_zoom-(zoomin_f * diff)){
+				this.camera_zoom = this.camera_zoom_t;
+			}
+		} 
 		
 		this.time += diff;
 		
@@ -68,7 +74,7 @@ scene_7 = {
 	
 	addCubes: function(white){
 		if(this.cubes_num==this.max_cubes){
-			this.camera_zoom = 38;
+			this.camera_zoom = 40;
 			this.big_cubes.push(this.cubes);
 			this.x_offset += this.cube_size*this.cube_spacing*this.bigcube_spacing;
 			this.initCubes();

@@ -14,7 +14,6 @@ var world = {
 
 var config = {
 	models: [ 'box', 'box_white', 'plane' ],
-	scenes: [ scene_1 ],   
   timer: 20,		 
   cents_per_block: 100,
 	shaders: [
