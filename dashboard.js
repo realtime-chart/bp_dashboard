@@ -39,16 +39,22 @@ $(document).ready(function(){
   initEngine();
 });
 
+last_donation=0;
+function pollDonations(){
+  var api_url = 'http://www.bp42.com/de/activity_feed/donations';
+  if(last_donation>0){ api_url+='?since='+last_donation; }
+  $.get(api_url, function(d){
+    var data = JSON.parse(d);
+    $(data).each(function(i){
+      if(this.time>last_donation){ last_donation = this.time; }
+      addDonation(this.amount, this.codonation);
+    });
+    window.setTimeout(pollDonations, 2000);
+  });
+}
+pollDonations();
 
-/* test */
-window.setInterval(function(){
-	var amount = Math.random()*2000;
-	if(Math.random()>0.7){
-		addDonation(amount, true);
-	} else {
-		addDonation(amount, false);
-	}	
-}, 2000);
+
 
 
 
