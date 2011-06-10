@@ -9,12 +9,14 @@ var stats = {
 }
 
 function addDonation(amount, codonation){
-	stats.total_amount += amount;
-	stats.total_number += 1;
-	var amount_in_cubes = Math.floor((amount / config.cents_per_block));
-	for(n=0; n<=amount_in_cubes; n++){
-		cube_queue.push(codonation);
-	}	
+  if(amount){
+	  stats.total_amount += amount;
+	  stats.total_number += 1;
+	  var amount_in_cubes = Math.floor((amount / config.cents_per_block));
+	  for(n=0; n<=amount_in_cubes; n++){
+		  cube_queue.push(!codonation);
+	  }	
+	}
 }
 
 function updateStatsDisplay(){
@@ -24,7 +26,7 @@ function updateStatsDisplay(){
 		$('.stat_total_amount').html(total_amount_euro);
 	}
 	if(stats.total_number > stats.total_number_displayed){
-		stats.total_number_displayed = stats.total_number;
-		$('.stat_total_number').html(stats.total_number_displayed);
+		stats.total_number_displayed += 0.2;
+		$('.stat_total_number').html(Math.floor(stats.total_number_displayed));
 	}
 }
