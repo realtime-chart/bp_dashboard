@@ -16,18 +16,16 @@ var world = {
   }  
 }
 
-
 var config = {
-	models: [ 'box', 'box_white', 'plane' ],
-  timer: 20,		 
+  models: [ 'box', 'box_white', 'plane' ],
+  timer: 40,		 
   cents_per_block: 100,
   cube_size: 4,
-	shaders: [
+  shaders: [
     ['data/vertex_light.shader','vertex'],
     ['data/fragment_light.shader','fragment']
   ]
 }
-
 
 try{
 	var cube_size = parseInt(document.location.hash.split('#')[1]);
@@ -37,14 +35,16 @@ try{
 $(document).ready(function(){  
   initGL();
   initEngine();
+  initInterface();
 });
 
-last_donation=0;
+start_date=new Date();
+start_date.setHours(start_date.getHours()-1);
+last_donation=Math.floor(Number(start_date)/1000);
+
 function pollDonations(){
-  var api_url = 'http://www.bp42.com/de/activity_feed/donations';
-  if(last_donation>0){ api_url+='?since='+last_donation; }
   $.ajax({
-    url: api_url,
+    url: 'feed.php?since='+last_donation,
     complete: function(x,s){
       try{
         var data = JSON.parse(x.responseText);
@@ -58,6 +58,11 @@ function pollDonations(){
   });
 }
 pollDonations();
+
+function initInterface(){
+  $('#status').html('  since: ' + start_date.getDate() + '.' + start_date.getMonth() + ' ' + start_date.getHours() + ':'  + start_date.getMinutes() + ':' + start_date.getSeconds());  
+}
+
 
 
 
