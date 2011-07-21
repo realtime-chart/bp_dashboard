@@ -39,7 +39,7 @@ $(document).ready(function(){
 });
 
 start_date=new Date();
-start_date.setHours(start_date.getHours()-1);
+start_date.setHours(start_date.getHours()-24);
 last_donation=Math.floor(Number(start_date)/1000);
 
 function pollDonations(){
