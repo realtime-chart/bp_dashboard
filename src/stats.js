@@ -4,7 +4,7 @@ var stats = {
 	total_amount: 0,
 	total_number: 0,
 	total_number_displayed: 0,
-	total_amount_display_growrate: 7,
+	total_amount_display_growrate: 42,
 	total_amount_displayed: 0,
 }
 
